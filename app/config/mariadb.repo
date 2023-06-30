@@ -1,0 +1,9 @@
+# centos7
+# https://blog.hostvn.net/chia-se/huong-dan-cai-dat-mariadb-tren-centos-7.html
+# vim /etc/yum.repos.d/mariadb.repo
+# yum install MariaDB-server MariaDB-client -y
+[mariadb]
+name = MariaDB
+baseurl = https://mirror.mariadb.org/yum/10.5/rhel7-amd64/
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1

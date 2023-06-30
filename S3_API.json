@@ -1,0 +1,1562 @@
+{
+	"info": {
+		"_postman_id": "86769ffb-6267-4978-be82-e995ce3aff0d",
+		"name": "CEPH S3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12572496"
+	},
+	"item": [
+		{
+			"name": "Login user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "admintest425123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/user/auth",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authen twofactor user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "admintest425123",
+						"type": "text"
+					},
+					{
+						"key": "enable_two_factors",
+						"value": "True",
+						"type": "text"
+					},
+					{
+						"key": "twofa_token",
+						"value": "331221",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/user/auth/twofactor",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"auth",
+						"twofactor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create bucket",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-1\",\n    \"acl\": \"private\",\n    \"lock\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/bucket",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"bucket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List buckets",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/bucket",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"bucket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete bucket by bucket-name",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/bucket/phule989",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"bucket",
+						"phule989"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file to bucket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "objs",
+							"type": "file",
+							"src": [
+								"/Users/tuantd/Downloads/staticWeb/index.html",
+								"/Users/tuantd/Downloads/staticWeb/error.html"
+							]
+						},
+						{
+							"key": "bucket_name",
+							"value": "tuan-bucket-1",
+							"type": "text"
+						},
+						{
+							"key": "acl",
+							"value": "public-read",
+							"type": "text"
+						},
+						{
+							"key": "folder_key",
+							"value": "tuan06/tuan02",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download file from bucket",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "tuantd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-4",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "index.html",
+						"type": "text"
+					},
+					{
+						"key": "version_id",
+						"value": "T2YYZYK5amraO-vUI5sEt9NuFue1a3C",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete file",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-1",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "test.txt",
+						"type": "text"
+					},
+					{
+						"key": "version_id",
+						"value": "0ItTlwIVUITYXZr6s68j8vUCPuXXSYT",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "twofa_token",
+						"value": "411654",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete object with multi key",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-1",
+						"type": "text"
+					},
+					{
+						"key": "keys",
+						"value": "index.html,error.html",
+						"type": "text"
+					},
+					{
+						"key": "versionId",
+						"value": "0ItTlwIVUITYXZr6s68j8vUCPuXXSYT",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "twofa_token",
+						"value": "112146",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/objects",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"objects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create folder in bucket",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"folder_key\": \"tuan01/x01\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/folder",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"folder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List folder in bucket",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-19",
+						"type": "text"
+					},
+					{
+						"key": "prefix",
+						"value": "tuan01/",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/folder",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"folder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List object details in bucket <access = true>",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-1",
+						"type": "text"
+					},
+					{
+						"key": "prefix",
+						"value": "tuantd04",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/details",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Copy file",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"src_bucket\": \"tuan-bucket-19\",\n    \"src_key\": \"mau1.png\",\n    \"des_bucket\": \"tuan-bucket-19\",\n    \"des_key\": \"tuan99/mau1.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/folder",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"folder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set permistion file",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-19",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "key",
+						"value": "ram.jpg",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "acl",
+						"value": "public-read",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"key\": \"ram.jpg\",\n    \"acl\": \"public-read\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/permission",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"permission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create time share file",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"key\": \"ram.jpg\",\n    \"time\": 1000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/permission",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"permission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get static web",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/static/tuan-bucket-4",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"static",
+						"tuan-bucket-4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set static web",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-4",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "index_file",
+						"value": "index.html",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "error_file",
+						"value": "error.html",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"index_file\": \"index.html\",\n    \"error_file\": \"error.html\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/static",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"static"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete static web",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/static/tuan-bucket-4",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"static",
+						"tuan-bucket-4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set cors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"objs\": [\n        {\n            \"ID\": \"tuan123\",\n            \"AllowedMethods\": \"GET,POST\",\n            \"AllowedOrigins\": \"58.186.85.243,58.186.85.244\",\n            \"AllowedHeaders\": \"*\",\n            \"MaxAgeSeconds\": 3000\n        },\n        {\n            \"ID\": \"tuan321\",\n            \"AllowedMethods\": \"GET,POST,PUT\",\n            \"AllowedOrigins\": \"58.186.85.245,58.186.85.246\",\n            \"AllowedHeaders\": \"*\",\n            \"MaxAgeSeconds\": 5000\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/cors",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"cors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit cors",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"obj\": {\n        \"ID\": \"tuan321\",\n        \"AllowedMethods\": \"GET,PUT\",\n        \"AllowedOrigins\": \"58.186.85.243,58.186.85.244\",\n        \"AllowedHeaders\": \"*\",\n        \"MaxAgeSeconds\": 3000\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/cors",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"cors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List cors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/cors/tuan-bucket-19",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"cors",
+						"tuan-bucket-19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete cors",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-19",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/cors/tuan-bucket-19",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"cors",
+						"tuan-bucket-19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set lifecycle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-19",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"objs\": [\n        {\n            \"Expiration\": {\n                \"Days\": 1\n            },\n            \"ID\": \"tuantd04\",\n            \"Prefix\": \"tuantd04\",\n            \"Status\": \"Enabled\"\n        },\n        {\n            \"Expiration\": {\n                \"Days\": 2\n            },\n            \"ID\": \"tuan06\",\n            \"Prefix\": \"tuan06\",\n            \"Status\": \"Disabled\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/lifecycle",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"lifecycle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit lifecycle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-19",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-19\",\n    \"obj\": {\n        \"Expiration\": {\n            \"Days\": 2\n        },\n        \"ID\": \"tuantd04\",\n        \"Prefix\": \"tuantd04\",\n        \"Status\": \"Enabled\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/lifecycle",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"lifecycle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List lifecycle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/lifecycle/tuan-bucket-19",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"lifecycle",
+						"tuan-bucket-19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete lifecycle",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "config_id",
+						"value": "tuantd04",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/lifecycle/tuan-bucket-19",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"lifecycle",
+						"tuan-bucket-19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List versioning by key",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					},
+					{
+						"key": "bucket_name",
+						"value": "tuan-bucket-15",
+						"type": "text"
+					},
+					{
+						"key": "key",
+						"value": "test.txt",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/object/versioning",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"versioning"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set enabled/suspend versioning in bucket <status=0 :  false>",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_key",
+						"value": "{{ACCESS_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "secret_key",
+						"value": "{{SECRET_KEY}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "admintests123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bucket_name\": \"tuan-bucket-15\",\n    \"status\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/object/versioning",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"object",
+						"versioning"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user <<role admin>>",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"admintests1234567\",\n    \"password\": \"admintest4251234567\",\n    \"display_name\": \"Test admin12343567\",\n    \"email\": \"admintests1234567@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Info user <<role admin>>",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "uid",
+						"value": "tuanuser",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/user/tuanuser",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"tuanuser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user <<role admin>>",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"tuantd16\",\n    \"display_name\": \"Tuan Trinh Dinh\",\n    \"email\": \"tuantrinh16@gmail.com\",\n    \"max_buckets\": 200,\n    \"suspended\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/user",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user  <<role admin>>",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/user/tuantest05554584",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"tuantest05554584"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set quota user  <<role admin>>",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"tuantd30\",\n    \"max_size_kb\": 102400\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/user/quota",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"quota"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create key for user <<role admin>>",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uid\": \"tuanuser\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete key for user <<role admin>>",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/user/key/lamps/B9D7DMRP50D04DARNNDD",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"key",
+						"lamps",
+						"B9D7DMRP50D04DARNNDD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello test api",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "uid",
+						"value": "admintests12",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "admintest42512",
+						"type": "text"
+					},
+					{
+						"key": "enable_two_factors",
+						"value": "True",
+						"type": "text"
+					},
+					{
+						"key": "twofa_token",
+						"value": "495496",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/hello",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

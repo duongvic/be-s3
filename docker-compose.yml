@@ -1,0 +1,16 @@
+version : '3.4'
+services:
+  cas-s3:
+    image: s3-be:v1
+    restart: unless-stopped
+    ports:
+      - 5001:5001
+    volumes:
+       - /opt/cas-s3/app:/s3-be/app
+       - /var/log/s3-be-api/:/var/log/s3-be-api/
+
+# TUTORIAL RUN
+# mount volumes ngoai host vao container
+# docker-compose up -d
+# docker logs -f <container_id>
+# docker-compose down

@@ -1,0 +1,40 @@
+## PRODUCTION
+uri: 'mysql+pymysql://root:cas2022!#@172.16.0.126:3306/cas_s3'
+sqlalchemy_pool_size: 20
+sqlalchemy_max_overflow: 0
+modifications: False
+bundle_errors: True
+secret: 'fti-cas'
+s3_be_host: '0.0.0.0'
+s3_be_port: 5001
+# set minus time out jwt
+jwt_time_out: 100
+max_buckets: 100
+static_web_url: '.staticweb-hn.fptvds.vn'
+endpoint_url: 'https://ss-hn.fptvds.vn/'
+# ==write log== 1: true, 0: false
+use_log_pg: 1
+use_log_mg: 1
+use_log_file: 1
+
+s3_fox_cloud:
+  name_or_id: name
+  version: 1
+  api_version: 1
+  session: None
+  endpoint: 'https://ss-hn.fptvds.vn'
+  region_name: VN
+
+s3_api:
+  username: 'admin'
+  password: 'dacR67F3CFDoU0qV'
+  host: 'http://172.18.0.251:8443'
+  my_secret_jwt: 'fti_cas_s3'
+
+s3_mongo_db:
+  host: '172.16.0.126'
+  port: 27017
+  username: 'mongo-admin'
+  password: 'ckM9Ez7xrHQ5yWTA'
+  db_name: 's3mongodb'
+  db_collection: 's3mongodb'
